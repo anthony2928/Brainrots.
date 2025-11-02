@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Brainrot 😜</title>
+  <style>
+    body {
+      background-color: white;
+      color: #111;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 { font-size: 2.2em; margin-bottom: 8px; }
+    p.lead { font-size: 18px; margin-bottom: 18px; }
+    .galeria { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-bottom:30px; }
+    .galeria img { width:220px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.18); transition:transform .25s; }
+    .galeria img:hover { transform:scale(1.05); }
+    .panel {
+      background:#f5f5f5; padding:18px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.08);
+      width:90%; max-width:460px; margin:0 auto;
+    }
+    input[type="url"] {
+      width:80%; padding:10px; border-radius:10px; border:1px solid #ccc; margin-bottom:10px;
+    }
+    button {
+      background:#ff4444; color:#fff; padding:10px 18px; border:none; border-radius:10px; cursor:pointer;
+    }
+    button:hover { background:#cc0000; }
+    .hidden { display:none; }
+    a.link-btn {
+      display:inline-block; margin-top:18px; padding:10px 16px; border-radius:10px; text-decoration:none;
+      border:2px solid #007bff; color:#007bff; transition:background .2s, color .2s;
+    }
+    a.link-btn:hover { background:#007bff; color:#fff; }
+    ul.recomendaciones { text-align: left; display: inline-block; margin-top: 10px; }
+    ul.recomendaciones li { margin: 6px 0; }
+    .nota { color: #555; font-size: 14px; margin-top: 10px; }
+    /* Tamaños específicos para recomendaciones */
+    .recomendaciones.pequeno li { font-size: 14px; }
+    .recomendaciones.grande li { font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- PRIMERA SECCIÓN -->
+  <div id="mainContent">
+    <h1>bienvenido a la página para conseguir brainrots super buenos</h1>
+    <p class="lead"><strong>Pon tu enlace de servidor privado — así se van a unir gente y se van a divertir.</strong></p>
+
+    <div class="galeria">
+      <img src="https://cdn-offer-photos.zeusx.com/22b2000a-c57e-4e13-bfd7-62a65db32061.jpg" alt="Brainrot 1">
+      <img src="https://i.imgur.com/jWLhCiH.jpeg" alt="Los Bros">
+      <img src="https://www.picclickimg.com/dzoAAeSwucZorfez/Robar-A-Brainrot-Los-Combinasiones-1-OP.webp" alt="Brainrot 3">
+      <img src="https://www.picclickimg.com/PlwAAeSwJX5pAMBn/Steal-A-Brainrot-Los-Tacoritas-400M-S-OP-ENCANTS-BARATO.webp" alt="Brainrot 4">
+    </div>
+
+    <div class="panel">
+      <input id="enlaceServidor" type="url" placeholder="Pega tu enlace aquí..." />
+      <br>
+      <button id="abrirBtn">Abrir servidor 🔗</button>
+      <p class="nota">Validamos que el enlace sea un enlace de servidor privado de Roblox.</p>
+
+      <!-- Recomendaciones pequeñas en primera sección -->
+      <ul class="recomendaciones pequeno">
+        <li><strong>Únete con brainrots buenos:</strong> Si entras con la base vacía o con brainrots muy malos es más probable que los que se unan se vayan.</li>
+        <li><strong>Tu amigo/a no puede unirse directamente:</strong> Por el momento solo pueden unirse usando esta misma página debido a un pequeño error.</li>
+        <li><strong>Sé amable:</strong> así puedes ganarte la confianza del jugador que se une, y cuando menos se lo espere entras a su base, agarras el brainrot y lo bloqueas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SEGUNDA SECCIÓN -->
+  <div id="savedContent" class="panel hidden" style="margin-top:24px;">
+    <h2>✅ Servidor privado guardado</h2>
+    <p>Haz clic en el enlace para unirte al servidor:</p>
+    <a id="fixedLink" class="link-btn"
+       href="https://www.roblox.com/share?code=ffd8a0b66573314ca1ec88595e9bb8b2&type=Server"
+       target="_blank">Entrar al servidor privado</a>
+
+    <!-- Recomendaciones más grandes en segunda sección -->
+    <div style="margin-top:18px; text-align:left;">
+      <h3>Recomendaciones y aclaraciones</h3>
+      <ul class="recomendaciones grande">
+        <li><strong>Únete con brainrots buenos:</strong> Si entras con la base vacía o con brainrots muy malos es más probable que los que se unan se vayan.</li>
+        <li><strong>Tu amigo/a no puede unirse directamente:</strong> Por el momento solo pueden unirse usando esta misma página debido a un pequeño error.</li>
+        <li><strong>Sé amable:</strong> así puedes ganarte la confianza del jugador que se une, y cuando menos se lo espere entras a su base, agarras el brainrot y lo bloqueas.</li>
+      </ul>
+      <p class="nota">.</p>
+    </div>
+  </div>
+
+  <script>
+    const abrirBtn = document.getElementById('abrirBtn');
+    const enlaceInput = document.getElementById('enlaceServidor');
+    const mainContent = document.getElementById('mainContent');
+    const savedContent = document.getElementById('savedContent');
+
+    abrirBtn.addEventListener('click', () => {
+      const enlace = enlaceInput.value.trim();
+
+      // Validación de enlace de servidor privado
+      if (!enlace || !enlace.startsWith('https://www.roblox.com/share?') || !enlace.includes('type=Server')) {
+        alert('⚠ Por favor, pega un enlace válido de servidor privado de Roblox (debe contener "roblox.com/share" y "type=Server").');
+        return;
+      }
+
+      // Mostrar la segunda sección (la "página" interna)
+      mainContent.classList.add('hidden');
+      savedContent.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+        </html>
